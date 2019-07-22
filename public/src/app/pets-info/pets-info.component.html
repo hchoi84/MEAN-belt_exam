@@ -1,0 +1,32 @@
+<button [routerLink]="['/pets']">Home</button>
+<h4 *ngIf="petInfo">Details about {{ petInfo.name }}</h4>
+<div class="container">
+    <div class="form-group row">
+        <p class="col-sm-3 col-form-label">Pet Type:</p>
+        <div class="col-sm-4">
+            <p *ngIf="petInfo" class="form-control-plaintext">{{ petInfo.pet_type }}</p>
+        </div>
+    </div>
+    <div class="form-group row">
+        <p class="col-sm-3 col-form-label">Description:</p>
+        <div class="col-sm-4">
+            <p *ngIf="petInfo" class="form-control-plaintext">{{ petInfo.description }}</p>
+        </div>
+    </div>
+    <div class="form-group row">
+        <p class="col-sm-3 col-form-label">Skills:</p>
+        <div class="col-sm-4">
+            <p *ngIf="petInfo" class="form-control-plaintext">{{ petInfo.skill1 }}</p>
+            <p *ngIf="petInfo" class="form-control-plaintext">{{ petInfo.skill2 }}</p>
+            <p *ngIf="petInfo" class="form-control-plaintext">{{ petInfo.skill3 }}</p>
+        </div>
+    </div>
+    <div class="form-group row">
+        <p class="col-sm-3 col-form-label">Likes:</p>
+        <div class="col-sm-4">
+            <p class="form-control-plaintext">{{ likes }}</p>
+        </div>
+    </div>
+    <button [ngClass]="{ 'disable': !enableLikeButton}" (click)="likePet()">Like this pet</button>
+    <button (click)="deletePet()">Adopt this pet!</button>
+</div>

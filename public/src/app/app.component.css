@@ -1,0 +1,22 @@
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+/* *{
+    border: 1px dotted green;
+} */
+.container{
+    margin: auto;
+    width: 90%;
+    text-align: center;
+}
+/* .ng-invalid { color: red; } */
+
+.row{
+    margin: auto;
+    width: auto;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.disable{
+    pointer-events: none;
+    background-color: black;
+}

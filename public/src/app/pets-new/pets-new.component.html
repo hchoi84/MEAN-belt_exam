@@ -1,0 +1,38 @@
+<h4>Know of a pet needing a home?</h4>
+<!-- {{ newPet | json }} -->
+<p *ngIf="petFound">Pet name already exists</p>
+<form (submit)="createPet()">
+    <div class="form-group">
+        <label for="name">Pet name:</label>
+        <input name="name" type="text" class="form-control" id="name" [(ngModel)]="newPet.name"
+            required minlength="3" maxlength="50" #name="ngModel">
+        <small class="form-text text-muted" *ngIf="name.errors">Must be 3 to 50 characters</small>
+    </div>
+    <div class="form-group">
+        <label for="pet_type">Pet type:</label>
+        <input name="pet_type" type="text" class="form-control" id="pet_type" [(ngModel)]="newPet.pet_type"
+            required minlength="3" maxlength="50" #pet_type="ngModel">
+            <small class="form-text text-muted" *ngIf="pet_type.errors">Must be 3 to 50 characters</small>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <input name="description" type="text" class="form-control" id="description" [(ngModel)]="newPet.description"
+        required minlength="3" maxlength="50" #description="ngModel">
+        <small class="form-text text-muted" *ngIf="description.errors">Must be 3 to 50 characters</small>
+    </div>
+    <p>Skills:</p>
+    <div class="form-group">
+        <label for="skill1">Skills 1:</label>
+        <input name="skill1" type="text" class="form-control" id="skill1" [(ngModel)]="newPet.skill1">
+    </div>
+    <div class="form-group">
+        <label for="skill2">Skill 2:</label>
+        <input name="skill2" type="text" class="form-control" id="skill2" [(ngModel)]="newPet.skill2">
+    </div>
+    <div class="form-group">
+        <label for="skill3">Skill 3:</label>
+        <input name="skill3" type="text" class="form-control" id="skill3" [(ngModel)]="newPet.skill3">
+    </div>
+    <button type="submit" class="btn btn-primary" *ngIf="!name.errors && !pet_type.errors && !description.errors">Submit</button>
+    <button type="button" [routerLink]="['/pets']" class="btn btn-primary">Cancel</button>
+</form>
