@@ -35,24 +35,36 @@ export class PetsEditComponent implements OnInit {
     observable.subscribe ( data => {
       console.log("Pet data:" , data);
       this.newPet = data;
+      this.petInfo = data;
     })
   }
 
   editPet(){
-    this._httpService.findPetByName(this.newPet.name).subscribe( data => {
-      if (data){
-        this.petFound = true;
-      }else{
-        let observable = this._httpService.updatePetInfo(this.newPet);
+    if (this.newPet.name === this.petInfo.name){
+      let observable = this._httpService.updatePetInfo(this.newPet);
         observable.subscribe( (data: any) => {
           if (data.message){
             this.message = data;
           }else{
             this._router.navigate(['/pets']);
           }
-        })
-      }
-    });
+        });
+    }else{
+      this._httpService.findPetByName(this.newPet.name).subscribe( data => {
+        if (data){
+          this.petFound = true;
+        }else{
+          let observable = this._httpService.updatePetInfo(this.newPet);
+          observable.subscribe( (data: any) => {
+            if (data.message){
+              this.message = data;
+            }else{
+              this._router.navigate(['/pets']);
+            }
+          });
+        }
+      });
+    }
   }
 
 }
