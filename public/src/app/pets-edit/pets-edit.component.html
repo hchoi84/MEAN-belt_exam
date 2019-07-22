@@ -1,5 +1,7 @@
 <h4>Edit this pet</h4>
-<!-- {{ newPet | json }} -->
+<!-- {{ newPet | json }}
+<br>
+{{ petName | json }} -->
 <p *ngIf="petFound">Pet name already exists</p>
 <form *ngIf="newPet" (submit)="editPet()">
     <div class="form-group">

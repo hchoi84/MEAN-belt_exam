@@ -13,6 +13,7 @@ export class PetsEditComponent implements OnInit {
 
   private newPet: any;
   private petInfo: any;
+  private petName: string;
   private petId: string;
   private petFound: boolean = false;
   private message: any;
@@ -29,18 +30,19 @@ export class PetsEditComponent implements OnInit {
     this._route.params.subscribe((params: Params) => this.petId = params.id);
     this.getPetInfo();
   }
-
+  
   getPetInfo(){
     let observable = this._httpService.getPetInfo(this.petId);
     observable.subscribe ( data => {
       console.log("Pet data:" , data);
       this.newPet = data;
-      this.petInfo = data;
+      this.petName = this.newPet.name;
     })
   }
 
   editPet(){
-    if (this.newPet.name === this.petInfo.name){
+    if (this.newPet.name === this.petName){
+      console.log("Name is same");
       let observable = this._httpService.updatePetInfo(this.newPet);
         observable.subscribe( (data: any) => {
           if (data.message){
@@ -50,6 +52,7 @@ export class PetsEditComponent implements OnInit {
           }
         });
     }else{
+      console.log("Name is NOT same");
       this._httpService.findPetByName(this.newPet.name).subscribe( data => {
         if (data){
           this.petFound = true;
